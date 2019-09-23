@@ -1,0 +1,126 @@
+1. User needs to collect data during an experiment with a single worm.
+   A. Connect (pair if need be, and select Avatar if need be) to Avatar/receive and display data
+   B. Position worm and start recording data / tag beginning**
+   C. Stop recording data / tag ending
+
+* data streamed to file in real-time (only during recording)
+** displayed on screen in real-time anytime connected - while recording or not
+
+2. Same as (1), except they control the start and stop recording
+
+Design goals:
+ - data itegrirty, stability and good UI are paramount
+
+Features:
+ x record button 
+ x filter (display only)
+ x set time automatcially
+ x show time from Avatar
+ x save to both bdf and csv
+ x real-time FFT
+ - tagging/annotation
+ x autoincrement worm number
+ - color/style preferences
+ - interactive console / scripting
+ x connection health information, lost frames warning
+ x lastest status and last log message at bottom status bar
+ - optionally File->view log to view whole log (for troubleshooting)
+ x user should be able to edit labnote in a non-modal way while
+ experiment is running. Upon stop recording user must attend to the
+ labnotes before starting another recording
+ x user must be notified of data loss, and suggested to please check
+ battery etc. both when it happens and in the save dialog
+
+Tasks:
+ x test waveform
+ x show time/divsion in X-axis, ticks but no values
+ x auto scaling or manual scaling on Y axis
+ x Y axis values in uV (may have to scale raw data array)
+ x desired scrolling
+ x disable left mouse button panning
+ x filling in UI ... menu items etc
+ x background/pen color change when recording
+ x incorporate icons - in title bar, in dock
+ x incorporate logo in UI
+ x Overlay "Not Recording" on display when not recording
+ x design the meta data dialog have experiment/worm number auto
+ increment
+ x allow user to prefill experiement meta data
+ x implement record button, bring up meta data dialog (functional)
+ upon turning off recording
+ x package application into single installer for Windows, Mac, Linux
+   - PyQtgraph, Pyside v..., QT v4xxx, pybluez ..., Numpy v, 
+ x communications menu -> select Avatar, display communications stats
+ x communications display
+ x select Avatar dialog
+ x refactor to support scrolling, chart, resizing and thread safe
+ x reorganize files into gui and acquisition
+ x add revision number to about box
+ x Avatar test mode
+ x "Discard" button on Note dialog
+ x more resolution on FFT
+ x Proper significant digits displayed on stats
+ x Increase Font size, sans font 
+ x Non-Italized fonts
+ - EPG annotations saved, mean EPG over recording saved in notes
+ x Disconnect Avatar button
+ x User selectable note attributes - design UI for this
+ x Strain, seratonin dosage, drug, food densitiy, Drug Name, Drug
+ Molarity (mM), Temperature
+ x Add filter selection, 1-35, Also, 60/50Hz notch
+ x Move zoom buttons to more intuitive location
+ - Key bindings?
+ x Disable mouse on plot
+
+- Tasks after Feb 4, 2016 Kat and KK Beta testing:
+ x .csv -> .txt extension for labreport compatibility
+ x display recording Elapsed time so user can know when to stop recordings
+ x Freq plot updated each second, 1 second resolution, EPG still .25 Hz resolution
+ x EPG boxed, bigger font, centered
+ x high pass to 0.5 Hz, normally not to see drift but to see low freq 
+ x Order of notes from most changed to least changed (orientation top, experimenter bottom) 
+ x Experiment number not autoincrement
+ x Comms status dialog can get hidden - need to fix
+
+ - review code guidelines:
+    - no duplicate code - code in one place, e.g. color
+    - no crashing or stabilty bugs
+    - no functional bugs
+    - all files have appropriate heading and id fields checked in
+    - ignore build directory
+    - review code todo and fixme tags 
+
+Overall Architecture:
+ - Keep implementations of acquistion, review and data management
+ seperate though use common UI elements and look and feel
+ 
+- Metadata, user customizable fields, mandatory fields? Format to
+  store, strategy to build UI / edit?
+
+- How to store metadata? Options are to embed metadata within
+  file. Alternatively store in seperate file or database. To keep
+  things simple and robust, we are choosing to embed the metadata.
+
+- Format of metadata? Desired to be:
+  - human readable
+  - easily machine parseable
+  - easily machine indexable
+  - interoperable
+
+  After considering free form text, XML and JSON, choosing JSON
+  because of its standard format, simplicity, readibility and seemless
+  operation with Python.
+
+  aIt may be ugly embedding JSON within an BDF+ annotation signal
+  (ie. over many records). say la vie
+
+  All metadata will be name value pairs with a flat structure. Names
+  will be stored in the nema_config.txt and will be user editiable.
+
+Types of information to report back:
+ - data
+ - status info (connecting, failed to connect - retrying)
+ - communications statistics (frames dropped)
+
+Data, communications statitics are changing at least 500/16 = 31.25Hz
+thus might as well put in the screen refresh method

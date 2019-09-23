@@ -1,0 +1,11 @@
+<RCC>
+  <qresource prefix="icon">
+    <file>White_logo_scaled.png</file>
+    <file>Side_txt_logo_rescaled.png</file>
+    <file>NemaSymbol_scaled.png</file>
+    <file>nema_icon_transparent.ico</file>
+    <file>busy_circle.gif</file>
+    <file>camera.png</file>
+    <file>camera_disabled.png</file>
+  </qresource>
+</RCC>

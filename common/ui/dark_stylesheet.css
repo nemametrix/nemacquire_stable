@@ -1,0 +1,258 @@
+/* FROM NEMACQUIRE need to declare widget background; set to transparent to see through to the main widow background */
+.QWidget {
+    background-color: transparent;
+}
+
+QWidget{
+	color: rgb(238, 238, 238);
+	background-color: rgb(47,47,47);
+	font-size: 11pt;
+    font-style: Helvetica;
+}
+
+QWidget::Disabled {
+    color: rgb(131, 131, 131);
+    background-color: rgb(47,47,47);
+	font-size: 11pt;
+    font-style: Helvetica;
+}
+
+/* Main widget background */
+#MainWindow{
+    background-color: rgb(47,47,47);
+}
+
+/* NEMANALYSIS OBJECTS */
+#pg_layout_widget{
+    background: transparent;
+}
+
+
+/* NEMACQUIRE OBJECTS */
+#graphicsLayoutWidget{
+    background: transparent;
+}
+
+.QTableWidget{
+	background-color: rgb(47,47,47);
+	alternate-background-color: rgb(57,57,57);
+}
+
+/* column headers for QTableWidget */
+.QHeaderView::section{
+	background-color: rgb(78,78,78);
+	padding-left: 0px;
+	padding-right: 0px;
+	padding: 0px;
+}
+
+.QScrollBar{
+	background: rgb(57,57,57);
+}
+/* QTab styling for Anaysis customization dialog */
+QTabWidget{
+	color: rgb(238, 238, 238);
+	background-color: rgb(47,47,47);
+}
+
+QTabWidget::pane { /* The tab widget frame */
+    border-top: 2px solid rgb(89, 89, 89);
+	background-color: rgb(47,47,47);
+}
+
+QTabWidget::tab-bar {
+    /*alignment: center;*/
+}
+
+QTabBar::tab {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 rgb(64, 64, 64), stop: 0.4 rgb(38, 38, 38),
+                                stop: 0.5 rgb(26, 26, 26), stop: 1.0 rgb(64, 64, 64));
+	border: 2px solid rgb(89, 89, 89);
+	border-bottom-color: rgb(64, 64, 64);
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    min-width: 170px;
+    padding: 8px
+}
+
+QTabBar::tab:selected {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 rgb(89, 89, 89), stop: 0.4 rgb(78, 78, 78),
+                                stop: 0.5 rgb(64, 64, 64), stop: 1.0 rgb(89, 89, 89));
+	border-bottom-color: rgb(89, 89, 89);
+	border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+QTabBar::tab:hover {
+	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 rgb(115, 115, 115), stop: 0.4 rgb(102, 102, 102),
+                                stop: 0.5 rgb(89, 89, 89), stop: 1.0 rgb(115, 115, 115));
+	border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+
+QTabBar::tab:!selected {
+    margin-top: 2px; /* make non-selected tabs look smaller */
+}
+
+/* make use of negative margins for overlapping tabs */
+QTabBar::tab:selected {
+    /* expand/overlap to the left and right by 4px */
+    margin-left: -4px;
+    margin-right: -4px;
+}
+
+
+/* Default QPushButton appearance (normal, disabled,hover, pressed) */
+QPushButton {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(33, 150, 243, 255), stop:1 rgba(27, 135, 210, 255));
+    border-width: 0.5px;
+    border-color: rgb(44,66,152);
+    border-style: solid;
+    border-radius: 10;
+    min-height: 35;
+    padding-left: 10px;
+    padding-right: 10px;
+	/* removes the focus outline */
+	outline: 0;
+}
+
+QPushButton::Disabled {
+    background-color: rgb(78, 78, 78);
+    border-color: rgb(90, 90, 90);
+    border-width: 0.5px;
+    border-radius: 10;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: rgb(131, 131, 131);
+}
+
+QPushButton:hover {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(27, 135, 210, 255), stop:1 rgba(33, 150, 243, 255));
+    border-color: rgb(22, 116, 179);
+}
+
+QPushButton:pressed {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(27, 135, 210, 255), stop:1 rgba(33, 150, 243, 255));
+    border-color: rgb(22, 116, 179);
+    position:relative;
+    padding-top: 2px;
+}
+
+/* Bottom status bar */
+QStatusBar{
+	color: rgb(255, 255, 255);
+    background-color: rgb(33, 150, 243);
+}
+
+/* Boolean value: makes style extend around the whole selected QList menu item  */
+QListView {
+    show-decoration-selected: 1;
+}
+/* color when hovering over a menu object */
+QListView::item:hover {
+}
+
+QTreeView {
+	background-color: rgb(47,47,47);
+}
+
+QTreeView::item{
+    color: rgb(0,0,0)
+}
+
+
+
+/* Default QLabel appearance */
+QLabel {
+    border: none;
+    padding-top: 0px;
+	color: rgb(255,255,255);
+    background: none;
+}
+
+QLabel#explTextLabel {
+    border: none;
+    padding-top: 0px;
+	color: rgb(255,255,255);
+    font-size: 10pt;
+    font-style: italic;
+}
+
+
+
+/* Main menu bar */
+QMenuBar{
+	color: rgb(0,0,0);
+	background-color: rgb(255,255,255);
+}
+
+QMenu::item:disabled{
+	color: rgb(131, 131, 131);
+}
+
+QFrame{
+    border: none;
+    padding: 0px;
+    margin: 0px;
+    background: none;
+}
+
+/* Notes dialog */ 
+QDialog {
+    background-color: rgb(47,47,47); 
+    border-color: rgb(47,47,47);
+}
+
+QLineEdit {
+    background-color: rgb(78,78,78);
+    border: none;
+	color: rgb(255,255,255);
+}
+
+QLineEdit:disabled{
+    color: rgb(111,111,111);
+	border: none;
+}
+
+QComboBox {
+    background-color: rgb(78,78,78);
+    /* padding neccessary for color to take effect, qt bug */
+    padding-top: 0px;  /* zero otherwise white bands */
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 0px; 
+    border-radius: 10px;
+	color: rgb(255,255,255);
+}
+
+
+ QComboBox QAbstractItemView {
+    background-color: rgb(78,78,78);  /* Sets the background color for the drop-down items */
+    selection-background-color: rgb(47,47,47);  /* sets the background of the selected item in the drop-down menu */
+    border: none;
+	color: rgb(255,255,255);
+} 
+
+/* Transparency enables user to see the background through top-layer widgets */
+#centralWidget{
+    background-color: transparent;
+}
+#TopButtonLayout{
+    background-color: transparent;
+}
+#horizontalLayout_3{
+    background-color: transparent;
+}
+#horizontalLayout_2{
+    background-color: transparent;
+}
+
+QToolTip { 
+    background-color: black; 
+    color: white; 
+    border: black solid 1px;
+}

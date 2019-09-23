@@ -1,0 +1,10 @@
+svnversion = "1438M"
+build_date = "2018-04-17 13:45:46"
+build_computer = ('Darwin', 'nemas-Air.fertilabthinkubator.com', '17.4.0', 'Darwin Kernel Version 17.4.0: Sun Dec 17 09:19:54 PST 2017; root:xnu-4570.41.2~1/RELEASE_X86_64', 'x86_64', 'i386')
+Python_version = "2.7.14 (default, Feb  6 2018, 20:04:00)  [GCC 4.2.1 Compatible Apple LLVM 9.0.0 (clang-900.0.39.2)]"
+PySide_version = "1.2.2"
+pyqtgraph_version = "0.10.0"
+Qt_version = "4.8.7"
+numpy_version = "1.12.1"
+cx_Freeze_version = "4.3.4"
+svn_version = "1.9."

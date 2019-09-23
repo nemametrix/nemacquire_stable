@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+
+<?ifndef nem_ver?>
+	<?define nem_ver="UNKNOWN"?>
+<?endif?>
+
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+ xmlns:bal="http://schemas.microsoft.com/wix/BalExtension"
+ xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+
+
+	
+  <!-- Upgrade Code needs to be the same for separate products, aka all Nemacquire releases should have the same upgrade code but different from Nemanalysis's -->
+  
+  <Bundle Name="NemAcquire" Version="$(var.nem_ver)" UpgradeCode="0d91c77b-34a5-4b7c-8e8e-c95b3bcd3524" Manufacturer="NemaMetrix">
+    
+	<util:RegistrySearchRef Id='XIAPI_VERSION' />
+	<BootstrapperApplicationRef Id="WixStandardBootstrapperApplication.RtfLicense">
+		<bal:WixStandardBootstrapperApplication
+            LicenseFile="license.rtf"
+            LogoFile="resources/NemaSymbol_scaled_no_alpha.png"
+			ThemeFile="CustomTheme.xml"
+            />
+	</BootstrapperApplicationRef>
+	
+    <Chain>
+      <MsiPackage Id="Dependency1" SourceFile="external\bossa-x64-1.8.msi" />
+	  <ExePackage 	Id="Dependency2" 
+					SourceFile="external\XIMEA_API_Installer.exe"
+					Vital="no"
+					InstallCommand="/S /SecDrivers=ON /SecXiApi=ON /SecXiApiNET=ON /SecGenTL=ON /SecPython=OFF /SecxiCamTool=OFF /SecxiCamToolExamples=OFF /SecxiCOP=OFF /SecXiLib=OFF /SecExamples=OFF"
+					InstallCondition = "NOT (xiapi_version_var ~= &quot;4.14.01.00&quot;)">
+					
+	  </ExePackage>
+      <MsiPackage Id="MainPackage" SourceFile="dist\NemAcquire-$(var.nem_ver)-amd64.msi" Vital="yes" />
+    </Chain>
+  </Bundle>
+  <Fragment>
+  <util:RegistrySearch
+		Id="XIAPI_VERSION"
+		Win64="yes"
+		Root="HKCU"
+		Key="Software\Ximea\CamSupport\APIs\xiApi"
+		Value="Version"
+		Result="value"
+		Variable="xiapi_version_var"/>
+    <!--<bal:Condition  Message="Detected existing XiApi">
+			xiapi_version_var ~= &quot;4.14.01.00&quot;
+	</bal:Condition>-->
+   </Fragment>
+<!--   <Fragment>
+   <Property Id="XIAPI_VERSION"
+   Value="Empty">
+		<RegistrySearch
+		Id="xiapi_version"
+		Win64="yes"
+		Root="HKCU" 
+		Key="Software\Ximea\CamSupport\APIs\xiApi"
+		Name="Version"
+		Type="raw"/>
+	</Property>
+	<Property Id="TEST_XIMEA"
+	Value="Hmm">
+	</Property>
+	<SetProperty
+	 Id="TEST_XIMEA"
+	 Before="InstallFinalize"
+	 Value="[XIAPI_VERSION]">
+		
+	</SetProperty>
+</Fragment>-->
+</Wix>
