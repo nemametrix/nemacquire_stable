@@ -1,0 +1,7 @@
+PySide==1.2.2
+pyqtgraph==0.10.0
+opencv-python==3.4.0.14
+pyserial==3.2.1
+sounddevice==0.3.11
+cx-Freeze==5.1.1
+
